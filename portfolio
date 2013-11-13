@@ -1,0 +1,17 @@
+Problem description
+===================
+
+Stories
+=======
+
+Two classes of users, Providers and Developers. Providers can define new projects. Developers can accept projects and hand in solutions. After a solution is accepted by the Provider, money is transfered as payment.
+
+1. Mr. A wants to categorise lots of pictrures
+2. Miss. B wants to have some sprites developed
+3. Ms. C wants a small program written.
+
+In each of the cases the Provider is responsible for the project definiton and planning which they provide to the Developer. Any developer can then apply for a project and the Provider can accept a candidate developer.
+
+Both Providers and Developers can be rated and such a rating is prompted when relation is ended. Along with the prompt for rating a short evaluation is asked for but filling it in is optional.
+
+The site will provide a number of 

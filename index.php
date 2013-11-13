@@ -10,15 +10,15 @@
 </head>
 
 <!-- Kommentera mig mera -->
-<body style="height:100%; overflow:hidden; margin:0px; padding:0px" >
+<body>
 
 	<?php
-	$db = new SQLite3('database.db');
 
-	$res = $db->query( "SELECT * FROM test" );
-	echo(  var_dump( $res->fetchArray() ) );
+	#phpinfo( -1 );
 
-	$db->close();
+	$db = pg_connect("host=localhost dbname=testdb user=db-man");
+
+	echo pg_get_pid($db) . "\n";
 	?>
 
 </body>
