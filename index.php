@@ -29,14 +29,20 @@
 		<div id="content">
 			<?php
 
-			#phpinfo( -1 );
-			#$db = pg_connect("host=localhost dbname=testdb user=db-man");
-			#echo pg_get_pid($db) . "\n";
-			#pg_close( $db );
+			if ( isset($_GET["page"]) )
+			{
+				$vaildPages = array( "browse", "add-project" );
+				$page = $_GET["page"];
 
-			include 'project.php';
-			include 'project.php';
-			include 'project.php';
+				if ( in_array($page, $vaildPages) )
+				{
+					include $page . '.php';
+				}
+				else
+				{
+					include 'error.html';
+				}
+			}
 
 			?>
 
@@ -61,45 +67,7 @@
 			};
 		}
 
-		function submitOnEnter( event )
-		{
-	    	var keypressed = event.keyCode || event.which;
-	    	if (keypressed == 13) {
-	        	// $(this).closest("form").submit();
-	        	loginForm();
-	    	};
-	    }
-	    function loginForm()
-		{
-
-			var username = $("input[name='username']").val();
-			var password = $("input[name='password']").val();
-			login( username, password );
-		}
-		function login( username, password )
-		{
-			function respond( data, status )
-			{
-				//Call a function when the state changes.
-				if( status )
-				{
-					var json = JSON.parse( data );
-					if (json.sessionid)
-					{
-						sessionStorage.sessionid = json.sessionid;
-					 	sessionStorage.username  = username;
-					}
-
-					window.location.reload(true);
-				}
-			}
-
-			$.post( "/login-handler.php", {username: username, password: password}, respond )
-		};
-
 		$(document).ready( loginTest() );
-		$(document).ready( $("input[name=username]").keydown( submitOnEnter ) );
-		$(document).ready( $("input[name=password]").keydown( submitOnEnter ) );
 
 		function respondTest( data, status )
 		{
@@ -109,7 +77,7 @@
 				items[i].innerHTML = data;
 			};
 		}
-		$(document).ready($.post( "/project-handler.php", {projectid: 1}, respondTest ) );
+		//$(document).ready($.post( "/project-handler.php", {projectid: 1}, respondTest ) );
 
 	</script>
 

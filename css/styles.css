@@ -44,6 +44,15 @@ body
 	height: 60px;
 }
 
+.non-displayed
+{
+	visibility: hidden;
+	width  : 0;
+	height : 0;
+	border : 0;
+	padding: 0;
+}
+
 /* === Navigation bar === */
 nav{}
 
@@ -61,10 +70,15 @@ nav a, nav a:hover
 	text-decoration: none;
 }
 
-.login_block
+.login-block
 {
 	margin-right: 1em;
-	font-size: 20pt;
+	/*font-size: 15pt;*/
+}
+
+.login-block > form
+{
+	margin: 0;
 }
 
 /* === Project view === */
