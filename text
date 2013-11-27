@@ -1,0 +1,55 @@
+säkerhet i SQL?
+en admin kan modifiera tabeller etc. Webservern har en inloggningsfri användare som har begränsade rättigheter. Kan man begränsa så en farlig användare inte kan söka data som här till en annan människa.
+
++ Bootstrap 3
+
+
+Login
+	+ generate session id
+	+ expire session id
+	+ refresh session id
+		- javascript keeps track of time since last activity.
+		- periodically refreshes the session id as long as in-activity doesn't go over 15 min.
+
+user profiles
+	+ developers
+	+ providers	
+
+Projects
+	+ add project
+	+ add desc
+	+ add images
+
+	+ project quick view
+	+ project page
+
+
+Transactions
+	- Vilka operationer ska vara sammansatta?
+	- Atomic, if error the whole transaction is rolled back.
+	- Are ACID -> Atomic, Consistent, Isolation, Durability
+
+Rollback
+
+Locking
+	- For concurrent databases
+
+noSQL -> no transactions and relaxes consistency requirement.
+
+Räkningar
+D0012E - Labbar
+D0016E - go server
+D0018E - Use cases and db diagrams
+S0014D - Ladda upp 3a, gör Lab 4a, Lab 5 välj projekt.
+
+Structure for project description
+	Name
+	Bounty
+	Provider
+
+	Description
+	Deliverables
+
+	tags
+
+	files
