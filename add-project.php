@@ -18,16 +18,18 @@ $("#add-project").submit( function(e)
 	var longDesc  = $( "input[id='longDescription']" ).val();
 
 	var postData = {};
-	postData.name      = name;
-	postData.shortDesc = shortDesc;
-	postData.longDesc  = longDesc;
+	postData.username            = sessionStorage.username;
+	postData.projectname         = name;
+	postData.description         = shortDesc;
+	postData.extendedDescription = longDesc;
 	
 	function handleAddProjectResponse ( data, status )
 	{
 		console.log( data );
 	}
+	console.log(postData);
 
-	$.post( "/add-project-handler.php", postData, handleAddProjectResponse );
+	$.post( "/api/add-project", postData, handleAddProjectResponse );
 
 });
 </script>
