@@ -13,14 +13,23 @@ require_once '../db.php';
  */
 function addProjectComment( $username, $projectid, $comment )
 {
-
-	// TODO: Protect against SQL-injects
 	$query = "";
-	$query = "INSERT INTO projectComments (	  username,   projectid,   comment  )
-			       VALUES                 ( '$username', $projectid, '$comment' )";
+	$query = "INSERT INTO projectComments (	 username,  projectid,  comment  )
+			       VALUES                 ( :username, :projectid, :comment )";
 
-	// Connect to db and execute SQL
-	dbConnectAndSQL( $query );
+	$dbh = dbConnect();
+	$stmt = $dbh->prepare($query);
+	
+	$stmt->bindParam( ':username' , $username  );
+	$stmt->bindParam( ':projectid', $projectid );
+	$stmt->bindParam( ':comment'  , $comment   );
+
+	$stmt->execute();
+
+	// TODO: Error reporting
+	$json = array( 'status' => 'success' );
+	echo json_encode( $json );
+	exit;
 }
 
 if ( !isset($_POST["username"   ]) ) { die("{'error': 'username missing'}"  ); }

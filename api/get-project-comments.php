@@ -8,12 +8,15 @@ function getProjectComments( $projectid )
 	$query = "SELECT 	username,
 					 	comment
 				FROM projectComments
-			   WHERE projectid = $projectid
+			   WHERE projectid = :projectid
 			;";
 
-	$sql = dbConnectAndSQL( $query );
+	$dbh = dbConnect();
+	$stmt = $dbh->prepare($query);
+	$stmt->bindParam( ':projectid', $projectid );
+	$stmt->execute();
 
-	return sql2json($sql);
+	return sql2json($stmt);
 }
 
 // Actual handler

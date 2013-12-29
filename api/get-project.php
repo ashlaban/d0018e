@@ -4,7 +4,6 @@ require_once '../db.php';
 
 function getProjects( $nProjects )
 {
-	// TODO: SQL-inject fix - $nProjects must be number.
 	$query = "SELECT 	projectid,
 						projectname,
 						owner,
@@ -12,11 +11,14 @@ function getProjects( $nProjects )
 						to_char(createddate, 'DD Mon, YYYY') AS createddate
 				FROM projectdata
 			ORDER BY projectid DESC
-			   LIMIT $nProjects";
+			   LIMIT :nProjects";
 
-	$sql = dbConnectAndSQL( $query );
+	$dbh = dbConnect();
+	$stmt = $dbh->prepare($query);
+	$stmt->bindParam( ':nProjects', $nProjects );
+	$stmt->execute();
 
-	echo sql2json($sql);
+	echo sql2json($stmt);
 }
 
 // Actual handler
