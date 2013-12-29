@@ -5,7 +5,107 @@
 		[
 			[
 				"max",
-				"max-height"
+				"max-width"
+			],
+			[
+				"pr",
+				"projectid"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"get",
+				"getColumns"
+			],
+			[
+				"pro",
+				"projects"
+			],
+			[
+				"add",
+				"addProjectArray"
+			],
+			[
+				"kn",
+				"knockout-projects"
+			],
+			[
+				"js",
+				"jsonObject"
+			],
+			[
+				"for",
+				"for	for (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"pg_r",
+				"pg_fetch_row"
+			],
+			[
+				"pg_n",
+				"pg_num_rows"
+			],
+			[
+				"proje",
+				"projectsToJSON"
+			],
+			[
+				"pg_fe",
+				"pg_fetch_row"
+			],
+			[
+				"req",
+				"req1	require_once …"
+			],
+			[
+				"re",
+				"req1	require_once …"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"exten",
+				"extendedDescription"
+			],
+			[
+				"de",
+				"developer"
+			],
+			[
+				"signup-p",
+				"signup-provider"
+			],
+			[
+				"sign",
+				"signup-username"
+			],
+			[
+				"el",
+				"else"
+			],
+			[
+				"is",
+				"isDeveloper"
+			],
+			[
+				"s",
+				"sessionid"
+			],
+			[
+				"se",
+				"sessionStorage"
+			],
+			[
+				"pass",
+				"password"
 			],
 			[
 				"lo",
@@ -28,10 +128,6 @@
 				"longDescription"
 			],
 			[
-				"s",
-				"shortDesc"
-			],
-			[
 				"logg",
 				"logged-out"
 			],
@@ -40,28 +136,12 @@
 				"vaildPages"
 			],
 			[
-				"add",
-				"add-project"
-			],
-			[
-				"pro",
-				"project"
-			],
-			[
 				"if",
 				"ifelse	if … else …"
 			],
 			[
-				"for",
-				"for	for (…) {…} (Improved Native For-Loop)"
-			],
-			[
 				"resp",
 				"respondTest"
-			],
-			[
-				"proje",
-				"projectid"
 			],
 			[
 				"padd",
@@ -88,20 +168,12 @@
 				"fib"
 			],
 			[
-				"is",
-				"isMultiple"
-			],
-			[
 				"fo",
 				"font-size"
 			],
 			[
 				"usr",
 				"username"
-			],
-			[
-				"re",
-				"respond"
 			],
 			[
 				"json",
@@ -124,10 +196,6 @@
 				"submitOnEnter"
 			],
 			[
-				"pass",
-				"fbsql_password"
-			],
-			[
 				"user",
 				"username"
 			],
@@ -136,20 +204,12 @@
 				"pg_connect"
 			],
 			[
-				"get",
-				"getElementById"
-			],
-			[
 				"stl",
 				"styles"
 			],
 			[
 				"size",
 				"font-size"
-			],
-			[
-				"mar",
-				"margin"
 			],
 			[
 				"pa",
@@ -364,10 +424,6 @@
 				"controlBias"
 			],
 			[
-				"pr",
-				"println"
-			],
-			[
 				"ou",
 				"out"
 			],
@@ -458,67 +514,59 @@
 			[
 				"pKer",
 				"pKernel0"
-			],
-			[
-				"fin",
-				"fileHandle"
-			],
-			[
-				"buffer",
-				"buffer"
-			],
-			[
-				"MP_",
-				"MP_MAX_ITERATIONS"
-			],
-			[
-				"curr",
-				"currentIteration"
-			],
-			[
-				"M",
-				"MP_NUM_ELEMENTS"
-			],
-			[
-				"mpF",
-				"mpFlushLearning"
-			],
-			[
-				"mp",
-				"mpSqrt"
-			],
-			[
-				"inpu",
-				"inputInQ16"
-			],
-			[
-				"arm_",
-				"arm_var_q15"
-			],
-			[
-				"temp",
-				"tempSum"
-			],
-			[
-				"le",
-				"learningCoeff"
-			],
-			[
-				"sa",
-				"scaledResidual"
-			],
-			[
-				"spikes",
-				"spikes1"
-			],
-			[
-				"test",
-				"testsignal"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "add-project.php",
+			"settings":
+			{
+				"buffer_size": 1089,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "header.php",
+			"settings":
+			{
+				"buffer_size": 4587,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "api/add-project.php",
+			"settings":
+			{
+				"buffer_size": 1420,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "api/get-project.php",
+			"settings":
+			{
+				"buffer_size": 527,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "browse.php",
+			"settings":
+			{
+				"buffer_size": 1915,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/styles.css",
+			"settings":
+			{
+				"buffer_size": 138,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/LaTeXTools/LaTeX.sublime-build",
 	"command_palette":
@@ -580,6 +628,18 @@
 	},
 	"file_history":
 	[
+		"/usr/local/www/d0018e/header.php",
+		"/usr/local/www/d0018e/api/add-user.php",
+		"/usr/local/www/d0018e/db.php",
+		"/usr/local/www/d0018e/api/login.php",
+		"/usr/local/www/d0018e/api/get-project.php",
+		"/usr/local/www/d0018e/index.php",
+		"/usr/local/www/d0018e/css/styles.css",
+		"/usr/local/www/d0018e/browse.php",
+		"/usr/local/www/d0018e/api/add-project.php",
+		"/usr/local/www/d0018e/api/adduser.php",
+		"/usr/local/www/d0018e/add-project-handler.php",
+		"/Users/ashlaban/Dropbox/Skola/D0016E/sprint 2 preplan",
 		"/usr/local/www/idipity/build/server.js",
 		"/usr/local/www/idipity/kim.note",
 		"/usr/local/www/d0018e/api/test.php",
@@ -595,7 +655,6 @@
 		"/Users/ashlaban/Dropbox/Skola/D0012E - Labbhandledning/lab2.py",
 		"/Users/ashlaban/Downloads/D0012E-Lab-1-retur-1/Lab-1-grupp-19/Lab1.py",
 		"/usr/local/www/d0018e/error.html",
-		"/usr/local/www/d0018e/browse.php",
 		"/usr/local/www/d0018e/text",
 		"/usr/local/www/d0018e/project-handler.php",
 		"/usr/local/www/d0018e/project-handler.html",
@@ -603,10 +662,7 @@
 		"/Users/ashlaban/Dropbox/Skola/D0016E/go-server/server.go",
 		"/Users/ashlaban/Dropbox/Skola/D0016E/go-server/view.html",
 		"/Users/ashlaban/Dropbox/Skola/D0016E/go-server/css/test.css",
-		"/usr/local/www/d0018e/header.php",
-		"/usr/local/www/d0018e/css/styles.css",
 		"/usr/local/www/d0018e/project.php",
-		"/usr/local/www/d0018e/index.php",
 		"/Users/ashlaban/Dropbox/Skola/D0018E/go-server/server.go",
 		"/Users/ashlaban/Dropbox/Skola/D0016E/git-d0016e",
 		"/Users/ashlaban/Downloads/D0012E-Lab-1-retur-1/Lab-1-grupp-6/lab 1 pypy.py",
@@ -699,15 +755,7 @@
 		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpDebug.c",
 		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpio.c",
 		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpio.h",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpConfig.h",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpLearn.h",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/mpLib.sublime-workspace",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mp.h",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpUtility.c",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpLearn.c",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mp.c",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/main.c",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/STM32F4-Discovery/Projects/mpLib/makefile"
+		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpConfig.h"
 	],
 	"find":
 	{
@@ -731,6 +779,18 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"ownerusername",
+			"length",
+			"projectName",
+			"TasksViewModel",
+			"\"",
+			"i",
+			"tasks",
+			"data_sql",
+			"cmd",
+			"Label",
+			"myModal",
+			"\"",
 			"roomConfig",
 			"nInserts",
 			"avg_insert",
@@ -846,22 +906,10 @@
 			"paragrapgh",
 			"equation",
 			"Data represent",
-			"equation",
-			"subfigure",
-			"Data re",
-			"todonote",
-			"matching pursuit",
-			"todonote",
-			"sisterparal",
-			"sister",
-			"pagebreak",
-			"*",
-			"\\item",
-			"todonote",
-			"band"
+			"equation"
 		],
 		"highlight": true,
-		"in_selection": false,
+		"in_selection": true,
 		"preserve_case": false,
 		"regex": false,
 		"replace_history":
@@ -881,8 +929,169 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "add-project.php",
+					"settings":
+					{
+						"buffer_size": 1089,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								906,
+								906
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "header.php",
+					"settings":
+					{
+						"buffer_size": 4587,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4506,
+								4506
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "api/add-project.php",
+					"settings":
+					{
+						"buffer_size": 1420,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								91,
+								91
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 68.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "api/get-project.php",
+					"settings":
+					{
+						"buffer_size": 527,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								136,
+								136
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "browse.php",
+					"settings":
+					{
+						"buffer_size": 1915,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								848,
+								848
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "css/styles.css",
+					"settings":
+					{
+						"buffer_size": 138,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								136,
+								136
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

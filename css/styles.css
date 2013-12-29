@@ -1,11 +1,14 @@
 .container
 {
-	max-width: 650px;
+	/*max-width: 650px;*/
+	width: 75%;
 }
 
 /* === Project view === */
 #project-view
 {
+	min-width: 350px;
+
 	margin-left: auto;
 	margin-right: auto;
 

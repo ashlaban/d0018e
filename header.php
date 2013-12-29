@@ -1,9 +1,9 @@
 <div id="header">
 	<nav class="navbar navbar-default">
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="/"                ><span class="glyphicon glyphicon-home"       ></span> Home</a>       </li>
-			<li class="active"><a href="?page=browse"     ><span class="glyphicon glyphicon-folder-open"></span> Browse</a>     </li>
-			<li class="active"><a href="?page=add-project"><span class="glyphicon glyphicon-plus"       ></span> Add Project</a></li>
+			<li class="active"><a href="/"                 ><span class="glyphicon glyphicon-home"       ></span> Home</a>       </li>
+			<li class="active"><a href="?page=project-view"><span class="glyphicon glyphicon-folder-open"></span> Browse</a>     </li>
+			<li class="active"><a href="?page=project-add" ><span class="glyphicon glyphicon-plus"       ></span> Add Project</a></li>
 		</ul>
 
 		<!-- Log in  -->
@@ -47,8 +47,12 @@
 							<input type="text" class="form-control" id="signup-username" placeholder="Enter username">
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Password</label>
-							<input type="password" class="form-control" id="signup-password" placeholder="Password">
+							<label for="sign-up-password-label">Password</label>
+							<input type="password" class="form-control" id="signup-password" placeholder="Enter Password">
+						</div>
+						<div class="form-group">
+							<label for="sign-up-password-label">Retype Password</label>
+							<input type="password" class="form-control" id="signup-password2" placeholder="Enter password again">
 						</div>
 						<p>
 							Do you wish develop code? Check this box.
@@ -81,13 +85,8 @@
 </div>
 
 <script>
-function login( e )
+function login( username, password )
 {
-	e.preventDefault();
-
-	var username = $("input[name='username']").val();
-	var password = $("input[name='password']").val();
-
 	function respond( data, status )
 	{
 		if( !status )
@@ -110,7 +109,18 @@ function login( e )
 		}
 	}
 
-	$.post( "/api/login", {username: username, password: password}, respond )
+	$.post( "/api/login", {username: username, password: password}, respond );
+}
+
+function loginForm( e )
+{
+	e.preventDefault();
+
+	var username = $("input[name='username']").val();
+	var password = $("input[name='password']").val();
+
+	login( username, password );
+
 }
 
 function logout()
@@ -121,22 +131,50 @@ function logout()
 
 function signup()
 {
-	username  = $("#signup-username" ).val();
-	password  = $("#signup-password" ).val();
-	developer = $("#signup-developer").is(":checked");
-	provider  = $("#signup-provider" ).is(":checked");
+	username   = $("#signup-username"  ).val();
+	password   = $("#signup-password"  ).val();
+	password2  = $("#signup-password2" ).val();
+	developer  = $("#signup-developer" ).is(":checked");
+	provider   = $("#signup-provider"  ).is(":checked");
+
+	// Error checking
+	error = false;
+	if ( password !== password2 )
+	{
+		error = true;
+		// TODO: Mark error
+		console.log('Passwords do not match');
+	}
+	if ( password === "" )
+	{ 
+		error = true;
+		// TODO: Mark error
+		console.log('Passwords cannot be empty');
+	}
+	if ( error ) { return; }
 
 	// TODO: Add verification of data
 	function signupResponse( data, status )
 	{
-		// If sucessful, close modal,
+		json = JSON.parse(data);
+
+		// If sucessful, close modal and log user in.
 		// Else update modal with errors.
+		if ( json.status === 'success' )
+		{
+			$('#sign-up-modal').modal('hide');
+			$('#sign-up-modal').on('hidden.bs.modal', function (e)
+			{
+				login( username, password );
+			});
+			
+		}
 	}
 
 	obj = {username: username, password: password, isDeveloper: developer, isProvider: provider};
-	$.post( "/api/adduser", obj, signupResponse )
+	$.post( "/api/add-user", obj, signupResponse )
 }
 
-$("#logged-out-form").submit( login );
+$("#logged-out-form").submit( loginForm );
 
 </script>

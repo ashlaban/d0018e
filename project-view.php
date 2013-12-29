@@ -20,7 +20,8 @@
 				</dl>
 		</div>
 		<div class="panel-footer">
-			<button type="button" class="btn btn-default">View</button>
+			<button type="button" class="btn btn-default" data-bind="click: viewDetailsCallback">View Details</button>
+			<button type="button" class="btn btn-default">Apply</button>
 		</div>
 	</div>
 	<!-- /ko -->
@@ -38,17 +39,9 @@ function ProjectViewModel()
 	{
 		for (var iProject = 0; iProject < jsonObject.length; iProject++)
 		{
-			self.addProject( jsonObject[iProject] );
+			// TODO: Add some validation on the jsonObject
+			self.projects.push( jsonObject[iProject] );
 		}
-	}
-	self.addProject = function( jsonObject )
-	{
-		var project = { projectname: jsonObject.projectname,
-						owner      : jsonObject.owner,
-						createddate: jsonObject.createddate,
-						description: jsonObject.description
-					};
-		self.projects.push( project );
 	}
 }
 
@@ -66,6 +59,13 @@ function handleRecentProjects( data )
 
 $.post( "/api/get-project", { nProjects: 4 }, handleRecentProjects );
 
-$('.ipsum').lorem({ type: 'paragraphs', amount:'2', ptags:true });
+//$('.ipsum').lorem({ type: 'paragraphs', amount:'2', ptags:true });
+
+/* Loads the detailed view when button clicked */
+function viewDetailsCallback( project )
+{
+	sessionStorage.currentProject = JSON.stringify( project );
+	window.location.href = "/?page=project-details";
+}
 
 </script>

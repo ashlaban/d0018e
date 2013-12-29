@@ -28,6 +28,12 @@
 		$query .= "COMMIT;";
 
 		dbSQL( $conn, $query );
+		// TODO: Verfy that there were no problems
+
+		// Message success
+		$json = array( 'status' => 'success' );
+		echo json_encode( $json );
+		exit;
 	}
 ?>
 

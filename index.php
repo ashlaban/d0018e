@@ -38,7 +38,7 @@
 
 			if ( isset($_GET["page"]) )
 			{
-				$vaildPages = array( "browse", "add-project" );
+				$vaildPages = array( "project-view", "project-details", "project-add" );
 				$page = $_GET["page"];
 
 				if ( in_array($page, $vaildPages) )
