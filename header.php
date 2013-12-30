@@ -19,11 +19,11 @@
 
 		<!-- Logged in  -->
 		<div class="login-block" id="logged-in">
-			<a href="/test">
-				<span class="glyphicon glyphicon-user"></span>
+			<a href="/" onclick="logout()"><p class="navbar-text navbar-right">Log out</p></a>
+			<a id="userProfileLink" href="/user">
 				<p class="navbar-text navbar-right">Signed in as <script>document.write( sessionStorage.username );</script></p>
 			</a>
-			<a href="/" onclick="logout()">Log out</a>
+			
 		</div>
 	</nav>
 
@@ -177,5 +177,6 @@ function signup()
 }
 
 $("#logged-out-form").submit( loginForm );
+$("#userProfileLink").attr( 'href', "/user/" + sessionStorage.username );
 
 </script>
