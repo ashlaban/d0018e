@@ -2,8 +2,10 @@
 
 <!-- TODO: Change the width of this component! -->
 
+<link href="css/project-view.css" rel="stylesheet">
+
 <div id="project-view">
-	<!-- ko foreach: projects -->
+	<!-- ko foreach: { data: projects, afterRender: projectViewModel.starsRenderHandler } -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title" data-bind="text: projectname">Project Name</h3>
@@ -17,6 +19,8 @@
 					<dd data-bind="text: createddate">Date placeholder</dd>
 					<dt>Description</dt>
 					<dd data-bind="text: description">Description placeholder</dd>
+					<dt>Rating</dt>
+					<dd><span class="stars" data-bind="text: projectrating"></span></dd>
 				</dl>
 		</div>
 		<div class="panel-footer">
@@ -34,6 +38,7 @@ function ProjectViewModel()
 {
 	var self = this;
 	self.projects = ko.observableArray();
+	self.numberProjects = 0;
 
 	self.addProjectArray = function( jsonObject )
 	{
@@ -42,7 +47,9 @@ function ProjectViewModel()
 			// TODO: Add some validation on the jsonObject
 			self.projects.push( jsonObject[iProject] );
 		}
-	}
+
+		renderStars();
+	};
 }
 
 var projectViewModel = new ProjectViewModel()
@@ -64,8 +71,7 @@ $.post( "/api/get-project", { nProjects: 4 }, handleRecentProjects );
 /* Loads the detailed view when button clicked */
 function viewDetailsCallback( project )
 {
-	sessionStorage.currentProject = JSON.stringify( project );
-	window.location.href = "/?page=project-details";
+	window.location.href = "/browse/" + project.projectid;
 }
 
 </script>

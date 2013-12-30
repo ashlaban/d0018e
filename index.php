@@ -25,6 +25,33 @@
 	<!-- Handrolled -->
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 
+	<script>
+	// Global functions
+
+	// Turning ratings into stars
+	$.fn.stars = function()
+	{
+	    return $(this).each(function()
+	    {
+	        // Get the value
+	        var val = parseFloat($(this).html());
+	        console.log(val);
+	        // Make sure that the value is in 0 - 5 range, multiply to get width
+	        var size = Math.max(0, (Math.min(5, val))) * 16;
+	        // Create stars holder
+	        var $span = $('<span />').width(size);
+	        // Replace the numerical value with stars
+	        $(this).html($span);
+	    });
+	};
+
+	function renderStars()
+	{
+		$('span.stars').stars();
+	};
+
+	</script>
+
 </head>
 
 <!-- Kommentera mig mera -->
@@ -38,7 +65,7 @@
 
 			if ( isset($_GET["page"]) )
 			{
-				$vaildPages = array( "project-view", "project-details", "project-add" );
+				$vaildPages = array( "user-view", "project-view", "project-details", "project-add" );
 				$page = $_GET["page"];
 
 				if ( in_array($page, $vaildPages) )
@@ -81,16 +108,6 @@
 		}
 
 		$(document).ready( loginTest() );
-
-		function respondTest( data, status )
-		{
-			//alert(data);
-			var items = $('.project-view .desc');
-			for (var i = items.length - 1; i >= 0; i--) {
-				items[i].innerHTML = data;
-			};
-		}
-		//$(document).ready($.post( "/project-handler.php", {projectid: 1}, respondTest ) );
 
 	</script>
 

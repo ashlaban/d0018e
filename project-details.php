@@ -15,9 +15,10 @@
 
 			<img class="center-block lazy" data-src="holder.js/300x200" width="300" height="200">
 			<dl class="dl-horizontal">
-				<dt>Author</dt>       <dd data-bind="text: owner">Placeholder for owner</dd>
-				<dt>Creation Date</dt><dd data-bind="text: createddate">Date placeholder</dd>
-				<dt>Description</dt>  <dd data-bind="text: description">Description placeholder</dd>
+				<dt>Author</dt>       <dd data-bind="text: owner"></dd>
+				<dt>Creation Date</dt><dd data-bind="text: createddate"></dd>
+				<dt>Description</dt>  <dd data-bind="text: description"></dd>
+				<dt>Rating</dt>       <dd><span class="stars" data-bind="text: rating"></span></dd>
 			</dl>
 
 		</div>
@@ -50,7 +51,7 @@
 		<!-- /ko -->
 
 		<div id="add-comment">
-			<textarea id="add-comment-area">Placeholder?</textarea>
+			<textarea id="add-comment-area" placeholder="Enter Comment..."></textarea>
 			<button id="add-comment-btn" onclick="submitComment()">Post</button>
 		</div>
 	</div>
@@ -62,15 +63,14 @@
 // Knockout - databindings for updating project panels
 function ProjectDetailsModel()
 {
-	var currentProject = JSON.parse( sessionStorage.currentProject );
-
 	var self = this;
 
 	// Project data
-	self.projectname = currentProject.projectname;
-	self.owner       = currentProject.owner;
-	self.createddate = currentProject.createddate;
-	self.description = currentProject.description
+	self.projectname = ko.observable('null');
+	self.owner       = ko.observable('null');
+	self.createddate = ko.observable('null');
+	self.description = ko.observable('null');
+	self.rating      = ko.observable('null');
 
 	// Array
 	self.tasks      = ko.observableArray();
@@ -93,6 +93,35 @@ function ProjectDetailsModel()
 	{
 		// TODO: Validation
 		self.comments.push( jsonObject );
+	}
+
+	// Response handlers
+	self.handleProject = function( data )
+	{
+		console.log(data);
+		console.log(self.projectname());
+		var jsonObject = $.parseJSON( data );
+		self.projectname( jsonObject[0].projectname   );
+		self.owner(       jsonObject[0].owner         );
+		self.createddate( jsonObject[0].createddate   );
+		self.description( jsonObject[0].description   );
+		self.rating(      jsonObject[0].projectrating );
+		console.log(self.projectname());
+		renderStars();
+	}
+
+	self.handleProjectsTasks = function( data )
+	{
+		if (data === "") { return; }
+		var jsonObject = $.parseJSON( data );
+		projectDetailsModel.addToArray( jsonObject, "tasks" );
+	}
+
+	self.handleProjectsComments = function( data )
+	{
+		if (data === "") { return; }
+		var jsonObject = $.parseJSON( data );
+		projectDetailsModel.addToArray( jsonObject, "comments" );
 	}
 }
 
@@ -119,41 +148,25 @@ function submitComment()
 }
 // End Comment actions
 
-function handleProjectsTasks( data )
-{
-	var jsonObject = $.parseJSON( data );
-	projectDetailsModel.addToArray( jsonObject, "tasks" );
-	Holder.run();
-}
-
-function handleProjectsComments( data )
-{
-	console.log(data);
-	var jsonObject = $.parseJSON( data );
-	projectDetailsModel.addToArray( jsonObject, "comments" );
-	Holder.run();
-}
-
 // Set up knockout and fetch data from database
-var currentProject = JSON.parse( sessionStorage.currentProject );
-if ( currentProject != null )
-{
-	console.log("Running modelview")
-	var projectDetailsModel = new ProjectDetailsModel()
-	ko.applyBindings( projectDetailsModel, $('#project-details')[0] );
+// var currentProject = JSON.parse( sessionStorage.currentProject );
+console.log("Running modelview")
+var projectDetailsModel = new ProjectDetailsModel()
+ko.applyBindings( projectDetailsModel, $('#project-details')[0] );
 
-	var projectid   = currentProject.projectid;
-	var accesstoken = sessionStorage.token; // TODO: use implement this..! 
-	$.post( "/api/get-project-tasks"   , { projectid: projectid }, handleProjectsTasks    );
-	$.post( "/api/get-project-comments", { projectid: projectid }, handleProjectsComments );
-}
-else
-{
-	// TODO: Display error page or default or so
-}
+// var projectid   = currentProject.projectid;
+var projectid = <?php echo $_GET["projectid"] ?>;
+var accesstoken = sessionStorage.token; // TODO: use implement this..!
+$.post( "/api/get-project"         , { projectid: projectid }, projectDetailsModel.handleProject          );
+$.post( "/api/get-project-tasks"   , { projectid: projectid }, projectDetailsModel.handleProjectsTasks    );
+$.post( "/api/get-project-comments", { projectid: projectid }, projectDetailsModel.handleProjectsComments );
 
 // Privileges for logged in users
 // Note that a vaild token is required to post to api so it is ok to disable stuff in browser
-if (sessionStorage.username == null) $('#add-comment-btn')[0].disabled = true;
+if (sessionStorage.username == null)
+{
+	$('#add-comment-area')[0].disabled = true;
+	$('#add-comment-btn' )[0].disabled = true;
+}
 
 </script>

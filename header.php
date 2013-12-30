@@ -1,8 +1,9 @@
 <div id="header">
 	<nav class="navbar navbar-default">
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="/"                 ><span class="glyphicon glyphicon-home"       ></span> Home</a>       </li>
-			<li class="active"><a href="?page=project-view"><span class="glyphicon glyphicon-folder-open"></span> Browse</a>     </li>
+			<li class="active"><a href="/"      ><span class="glyphicon glyphicon-home"       ></span> Home</a>       </li>
+			<li class="active"><a href="/user"  ><span class="glyphicon glyphicon-home"       ></span> Users</a>      </li>
+			<li class="active"><a href="/browse"><span class="glyphicon glyphicon-folder-open"></span> Browse</a>     </li>
 			<li class="active"><a href="?page=project-add" ><span class="glyphicon glyphicon-plus"       ></span> Add Project</a></li>
 		</ul>
 
