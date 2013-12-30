@@ -44,7 +44,7 @@
 		<!-- ko foreach: comments -->
 		<div class="comment">
 			<dl class="dl-horizontal">
-				<dt><a href="#" data-bind="text: username">Username</a></dt>
+				<dt><a href="#" data-bind="text: username, attr: { href: usernameurl }">Username</a></dt>
 				<dd><p data-bind="text: comment">Comment text</p></dd>
 			</dl>
 		</div>
@@ -89,9 +89,11 @@ function ProjectDetailsModel()
 		// TODO: Validation
 		self.tasks.push( jsonObject );
 	}
+	
 	self.addComment = function( jsonObject )
 	{
 		// TODO: Validation
+		jsonObject.usernameurl = "../user/" + jsonObject.username;
 		self.comments.push( jsonObject );
 	}
 
@@ -141,6 +143,7 @@ function submitComment()
 	var callback = function(data)
 	{
 		console.log(data);
+		window.location.reload();
 	}
 
 	console.log( "Adding comment:" + JSON.stringify(message) );

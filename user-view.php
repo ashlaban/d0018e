@@ -25,7 +25,7 @@
 		<!-- ko foreach: comments -->
 		<div class="comment">
 			<dl class="dl-horizontal">
-				<dt><a href="#" data-bind="text: username">Username</a></dt>
+				<dt><a href="#" data-bind="text: commenter, attr: { href: commenterurl }">Username</a></dt>
 				<dd><p data-bind="text: comment">Comment text</p></dd>
 			</dl>
 		</div>
@@ -48,12 +48,37 @@ function ProjectViewModel()
 	self.username = ko.observable(null);
 	self.rating   = ko.observable(null);
 
+	// Array
+	self.comments   = ko.observableArray();
+
+	self.addToArray = function( jsonObject, type )
+	{
+		for (var iItem = 0; iItem < jsonObject.length; iItem++)
+		{
+			if ( type === "comments" ) self.addComment( jsonObject[iItem] );
+		}
+	}
+
+	self.addComment = function( jsonObject )
+	{
+		// TODO: Validation
+		jsonObject.commenterurl = '../user/' + jsonObject.commenter;
+		self.comments.push( jsonObject );
+	}
+
 	self.handleGetUser = function( data )
 	{
 		var jsonObject = $.parseJSON( data );
-		self.username( jsonObject[0].username );
-		self.rating(   jsonObject[0].rating   );
+		self.username( jsonObject[0].username   );
+		self.rating(   jsonObject[0].userrating );
 		renderStars();
+	}
+
+	self.handleUserComments = function( data )
+	{
+		if (data === "") { return; }
+		var jsonObject = $.parseJSON( data );
+		userViewModel.addToArray( jsonObject, "comments" );
 	}
 }
 
@@ -62,8 +87,29 @@ ko.applyBindings( userViewModel, $('#knockout-users')[0] );
 
 // End Knockout
 
+// Comment actions
+function submitComment()
+{
+	var comment   = $('#add-comment-area')[0].value;
+	var commentee = "<?php echo $_GET['username']?>";
+	var commenter = sessionStorage.username;
+
+	var message = {commentee: commentee, commenter: commenter, comment: comment};
+
+	var callback = function(data)
+	{
+		console.log(data);
+		window.location.reload();
+	}
+
+	console.log( "Adding comment:" + JSON.stringify(message) );
+	$.post( "/api/add-user-comment", message, callback ) 
+}
+// End Comment actions
+
 var username = "<?php echo $_GET['username']?>";
-$.post( "/api/get-user", { username: username }, userViewModel.handleGetUser );
+$.post( "/api/get-user"         , { username: username }, userViewModel.handleGetUser );
+$.post( "/api/get-user-comments", { commentee: username }, userViewModel.handleUserComments );
 
 // Privileges for logged in users
 // Note that a vaild token is required to post to api so it is ok to disable stuff in browser

@@ -4,7 +4,6 @@ require_once '../db.php';
 
 function getProjectComments( $projectid )
 {
-	// TODO: SQL-inject fix - $projectid must be number.
 	$query = "SELECT 	username,
 					 	comment
 				FROM projectComments
