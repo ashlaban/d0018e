@@ -58,7 +58,7 @@
 <body>
 	
 		
-		<?php include 'header.php' ?>
+		<?php include 'html/header.html' ?>
 
 		<div class="container">
 			<?php
@@ -70,11 +70,11 @@
 
 				if ( in_array($page, $vaildPages) )
 				{
-					include $page . '.php';
+					include 'html/' . $page . '.html';
 				}
 				else
 				{
-					include 'error.html';
+					include 'html/error.html';
 				}
 			}
 			else
@@ -89,7 +89,7 @@
 			?>
 		</div>
 
-		<?php include 'footer.php' ?>
+		<?php include 'html/footer.html' ?>
 
 	
 </body>

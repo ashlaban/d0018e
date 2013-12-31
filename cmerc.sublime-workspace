@@ -4,6 +4,62 @@
 		"selected_items":
 		[
 			[
+				"h",
+				"href"
+			],
+			[
+				"com",
+				"commenteeQuoted"
+			],
+			[
+				"pro",
+				"projectname"
+			],
+			[
+				"proje",
+				"projectid"
+			],
+			[
+				"pri",
+				"project-details"
+			],
+			[
+				"stars",
+				"renderStars"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"json_",
+				"json_encode"
+			],
+			[
+				"n",
+				"nProjects"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"fu",
+				"fun	Function"
+			],
+			[
+				"min-",
+				"min-width"
+			],
+			[
+				"pas",
+				"password2"
+			],
+			[
+				"sign",
+				"sign-up-modal"
+			],
+			[
 				"max",
 				"max-width"
 			],
@@ -22,10 +78,6 @@
 			[
 				"get",
 				"getColumns"
-			],
-			[
-				"pro",
-				"projects"
 			],
 			[
 				"add",
@@ -50,10 +102,6 @@
 			[
 				"pg_n",
 				"pg_num_rows"
-			],
-			[
-				"proje",
-				"projectsToJSON"
 			],
 			[
 				"pg_fe",
@@ -82,10 +130,6 @@
 			[
 				"signup-p",
 				"signup-provider"
-			],
-			[
-				"sign",
-				"signup-username"
 			],
 			[
 				"el",
@@ -470,100 +514,33 @@
 			[
 				"Loc",
 				"LocalResource"
-			],
-			[
-				"Coap",
-				"CoapApp"
-			],
-			[
-				"send",
-				"sendRequest"
-			],
-			[
-				"Ser",
-				"ServerEndpoint"
-			],
-			[
-				"Hello",
-				"HelloWorldServer"
-			],
-			[
-				"file",
-				"fileName"
-			],
-			[
-				"inp",
-				"inputFileHandle"
-			],
-			[
-				"l",
-				"loop"
-			],
-			[
-				"int",
-				"int"
-			],
-			[
-				"File",
-				"FILE"
-			],
-			[
-				"mpD",
-				"mpData_t"
-			],
-			[
-				"pKer",
-				"pKernel0"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "add-project.php",
+			"file": "/usr/local/www/lighttpd.conf",
 			"settings":
 			{
-				"buffer_size": 1089,
+				"buffer_size": 1027,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "header.php",
+			"contents": "# SQL Statements for generating the Code Mercenary database\n\n### --- Users --- ###\nCREATE TABLE userdata(\n\n)\n\nCREATE TABLE userpassword(\n\n)\n\nCREATE TABLE usercomments(\n\n)\n\n### --- Projects --- ###\nCREATE TABLE projectdata(\n\n)\n\nCREATE TABLE usertasks(\n\n)\n\nCREATE TABLE usercomments(\n\n)",
 			"settings":
 			{
-				"buffer_size": 4587,
-				"line_ending": "Unix"
+				"buffer_size": 284,
+				"line_ending": "Unix",
+				"name": "# SQL Statements for generating the Code Mercenary"
 			}
 		},
 		{
-			"file": "api/add-project.php",
+			"file": "index.php",
 			"settings":
 			{
-				"buffer_size": 1420,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "api/get-project.php",
-			"settings":
-			{
-				"buffer_size": 527,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "browse.php",
-			"settings":
-			{
-				"buffer_size": 1915,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "css/styles.css",
-			"settings":
-			{
-				"buffer_size": 138,
+				"buffer_size": 2550,
 				"line_ending": "Unix"
 			}
 		}
@@ -629,14 +606,28 @@
 	"file_history":
 	[
 		"/usr/local/www/d0018e/header.php",
-		"/usr/local/www/d0018e/api/add-user.php",
-		"/usr/local/www/d0018e/db.php",
-		"/usr/local/www/d0018e/api/login.php",
-		"/usr/local/www/d0018e/api/get-project.php",
+		"/usr/local/www/d0018e/api/get-project-comments.php",
+		"/usr/local/www/d0018e/api/get-user-comments.php",
+		"/usr/local/www/d0018e/project-view.php",
+		"/usr/local/www/d0018e/api/add-user-comment.php",
+		"/usr/local/www/d0018e/project-details.php",
 		"/usr/local/www/d0018e/index.php",
+		"/usr/local/www/d0018e/user-view.php",
+		"/usr/local/www/d0018e/css/user-view.css",
+		"/usr/local/www/d0018e/api/get-user.php",
+		"/usr/local/www/d0018e/api/get-project.php",
+		"/usr/local/www/d0018e/citations",
+		"/usr/local/www/d0018e/css/project-view.css",
+		"/usr/local/www/d0018e/css/project-details.css",
+		"/usr/local/www/d0018e/api/login.php",
+		"/usr/local/www/d0018e/api/add-project-comment.php",
+		"/usr/local/www/d0018e/api/add-project.php",
+		"/usr/local/www/d0018e/api/add-user.php",
+		"/usr/local/www/d0018e/api/get-project-tasks.php",
+		"/usr/local/www/d0018e/db.php",
 		"/usr/local/www/d0018e/css/styles.css",
 		"/usr/local/www/d0018e/browse.php",
-		"/usr/local/www/d0018e/api/add-project.php",
+		"/usr/local/www/d0018e/add-project.php",
 		"/usr/local/www/d0018e/api/adduser.php",
 		"/usr/local/www/d0018e/add-project-handler.php",
 		"/Users/ashlaban/Dropbox/Skola/D0016E/sprint 2 preplan",
@@ -741,21 +732,7 @@
 		"/Users/ashlaban/Dropbox/Jobb/SOA/coap/Californium/cf-helloworld-server/pom.xml",
 		"/Users/ashlaban/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/ashlaban/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
-		"/Users/ashlaban/Dropbox/Jobb/SOA/contiki/aesop/dhnode/outlet_coap.c",
-		"/Users/ashlaban/Dropbox/Jobb/SOA/m16c_gcc_install_script.sh",
-		"/Users/ashlaban/Desktop/Weekly Projects/Mathfinder/Project plan Mathfinder",
-		"/Users/ashlaban/Library/Application Support/Sublime Text 2/Packages/User/path.py",
-		"/Users/ashlaban/Library/Application Support/Sublime Text 2/Packages/LaTeXTools/LaTeXTools Preferences.sublime-settings",
-		"/Users/ashlaban/Library/Application Support/Sublime Text 2/Packages/User/LaTeXTools Preferences.sublime-settings",
-		"/Users/ashlaban/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
-		"/Users/ashlaban/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
-		"/usr/local/texlive/2011/texmf-dist/tex/latex/minted/minted.sty",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpUtilityQ15.c",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpDebug.h",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpDebug.c",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpio.c",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpio.h",
-		"/Users/ashlaban/Dropbox/Skola/Exjobb/C/mpLib/src/mpConfig.h"
+		"/Users/ashlaban/Dropbox/Jobb/SOA/contiki/aesop/dhnode/outlet_coap.c"
 	],
 	"find":
 	{
@@ -779,6 +756,52 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"...",
+			"commentee",
+			":commentee",
+			"username",
+			"getProjectComments",
+			"projectid",
+			"username",
+			"renderStars",
+			"render",
+			"stars",
+			"username",
+			"projectid",
+			"nProjects",
+			"data",
+			"null",
+			"function",
+			"self",
+			"null",
+			"nProjects",
+			"projectname",
+			"project",
+			"$",
+			"isProvider",
+			"isDeveloper",
+			"'",
+			"username",
+			"$",
+			"'",
+			"username",
+			"$",
+			"'",
+			"description",
+			"owner",
+			"post-comment-btn",
+			"owner",
+			"description",
+			"projectname",
+			"nProjects",
+			"input",
+			"iTask",
+			"project.",
+			"projectViewModel",
+			"project",
+			"iProject",
+			"projects",
+			"login",
 			"ownerusername",
 			"length",
 			"projectName",
@@ -860,56 +883,10 @@
 			"get_post_variable",
 			"define PROCESS",
 			"obs",
-			"\";obs\"",
-			"CLOCK_SECOND",
-			"CLOCK_SECONDS",
-			"ADCON0.BYTE",
-			"power_init",
-			"define CLOCK_SECOND",
-			"ADCON0",
-			"ds2782_read_temperature",
-			"ds2782_read_temperature()",
-			"ds2782_read_temperature();",
-			"_temperature",
-			"ADCON0",
-			"read_pot",
-			"blockwise",
-			"RESP_TYPE",
-			"notify_subscribers",
-			"fstBox",
-			"lbl1",
-			"fstBox",
-			"e",
-			"private",
-			"static",
-			"private",
-			"HelloWorldServer",
-			"Hello",
-			"private",
-			"ExampleClient",
-			"file",
-			"\n",
-			"todonote",
-			"todo",
-			"kernels",
-			"kernel",
-			"eq:learning",
-			"todo",
-			"todonotes",
-			"todonote",
-			"sec:fpga",
-			"sec:theory_algComplex",
-			"fig_max",
-			"cite",
-			"77",
-			"parallel",
-			"paragrapgh",
-			"equation",
-			"Data represent",
-			"equation"
+			"\";obs\""
 		],
 		"highlight": true,
-		"in_selection": true,
+		"in_selection": false,
 		"preserve_case": false,
 		"regex": false,
 		"replace_history":
@@ -929,29 +906,28 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "add-project.php",
+					"file": "/usr/local/www/lighttpd.conf",
 					"settings":
 					{
-						"buffer_size": 1089,
+						"buffer_size": 1027,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								906,
-								906
+								518,
+								518
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"word_wrap": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -961,24 +937,23 @@
 				},
 				{
 					"buffer": 1,
-					"file": "header.php",
 					"settings":
 					{
-						"buffer_size": 4587,
+						"buffer_size": 284,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4506,
-								4506
+								282,
+								282
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"auto_name": "# SQL Statements for generating the Code Mercenary",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -988,103 +963,24 @@
 				},
 				{
 					"buffer": 2,
-					"file": "api/add-project.php",
+					"file": "index.php",
 					"settings":
 					{
-						"buffer_size": 1420,
+						"buffer_size": 2550,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								91,
-								91
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 68.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "api/get-project.php",
-					"settings":
-					{
-						"buffer_size": 527,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								136,
-								136
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "browse.php",
-					"settings":
-					{
-						"buffer_size": 1915,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								848,
-								848
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "css/styles.css",
-					"settings":
-					{
-						"buffer_size": 138,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								136,
-								136
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1170,7 +1066,7 @@
 		[
 			[
 				"",
-				"/Users/ashlaban/Dropbox/Jobb/SOA/coap/Titanium/TitaniumGUI/TitaniumGUI.sublime-project"
+				"/usr/local/www/idipity/iDipity.sublime-project"
 			],
 			[
 				"ma",

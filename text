@@ -1,55 +1,40 @@
-säkerhet i SQL?
-en admin kan modifiera tabeller etc. Webservern har en inloggningsfri användare som har begränsade rättigheter. Kan man begränsa så en farlig användare inte kan söka data som här till en annan människa.
+Security
+	php reads file w/ password for db-access
+	access token for user
 
-+ Bootstrap 3
+Database state,
+	How to handle delete of password record?
+		If only password is deleted -> should not be allowed. You either delete all or none.
 
+Notes on tree structures in database
+	Typical design: following schema
+	ON UPDATE CASCADE
+		- Difference between tree and list
+	Not implemented currently but interesting to know nonetheless.
 
-Login
-	+ generate session id
-	+ expire session id
-	+ refresh session id
-		- javascript keeps track of time since last activity.
-		- periodically refreshes the session id as long as in-activity doesn't go over 15 min.
+TODO: Comments and the proposed change to ratings are "many-to-one".
 
-user profiles
-	+ developers
-	+ providers	
-
-Projects
-	+ add project
-	+ add desc
-	+ add images
-
-	+ project quick view
-	+ project page
+TODO:
+	Add projects as modal?
+	Add tasks from browse project if logged in as owner? Nah, better to have admin view on separate page.
 
 
-Transactions
-	- Vilka operationer ska vara sammansatta?
-	- Atomic, if error the whole transaction is rolled back.
-	- Are ACID -> Atomic, Consistent, Isolation, Durability
+Executive summary
+• User stories (different roles), use-cases, requirements, assumptions.
+• System architecture description and overview of the implementation.
+• Current backlog.
+• A database schema (E-R diagram) with descriptions, identification of keys etc.
+• Links to code (i.e., your teacher should be able to check the code).
+• Test case specifications
+• A description of the system's limitations and the possibilities for improvements.
 
-Rollback
-
-Locking
-	- For concurrent databases
-
-noSQL -> no transactions and relaxes consistency requirement.
-
-Räkningar
-D0012E - Labbar
-D0016E - go server
-D0018E - Use cases and db diagrams
-S0014D - Ladda upp 3a, gör Lab 4a, Lab 5 välj projekt.
-
-Structure for project description
-	Name
-	Bounty
-	Provider
-
-	Description
-	Deliverables
-
-	tags
-
-	files
+Frist normal form
+	Same number of columns for all rows.
+Second normal form
+	No non-key entry is fact about part of the (composite) key.
+Third
+	No non-key entry is fact about other non-key entry.
+Fourth
+	Seperate independent multi-valued facts
+Fifth
+	Agent-Company-Vehicle example...
