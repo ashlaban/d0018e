@@ -60,6 +60,10 @@
 
 <script>
 
+/*** GLOBAL VARIABLES ***/
+var projectid = <?php echo $_GET["projectid"] ?>;
+var accesstoken = sessionStorage.token; // TODO: use implement this..!
+
 // Knockout - databindings for updating project panels
 function ProjectDetailsModel()
 {
@@ -136,7 +140,6 @@ function submitComment()
 
 	var comment   = $('#add-comment-area')[0].value;
 	var username  = sessionStorage.username;
-	var projectid = JSON.parse(sessionStorage.currentProject).projectid;
 
 	var message = {projectid: projectid, username: username, comment: comment};
 
@@ -157,9 +160,6 @@ console.log("Running modelview")
 var projectDetailsModel = new ProjectDetailsModel()
 ko.applyBindings( projectDetailsModel, $('#project-details')[0] );
 
-// var projectid   = currentProject.projectid;
-var projectid = <?php echo $_GET["projectid"] ?>;
-var accesstoken = sessionStorage.token; // TODO: use implement this..!
 $.post( "/api/get-project"         , { projectid: projectid }, projectDetailsModel.handleProject          );
 $.post( "/api/get-project-tasks"   , { projectid: projectid }, projectDetailsModel.handleProjectsTasks    );
 $.post( "/api/get-project-comments", { projectid: projectid }, projectDetailsModel.handleProjectsComments );

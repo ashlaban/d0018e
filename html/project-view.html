@@ -59,7 +59,10 @@ ko.applyBindings( projectViewModel, $('#knockout-projects')[0] );
 
 function handleRecentProjects( data )
 {
+	console.log(data);
 	var jsonObject = $.parseJSON( data );
+	
+
 	projectViewModel.addProjectArray( jsonObject );
 	Holder.run();
 }

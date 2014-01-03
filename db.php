@@ -2,7 +2,8 @@
 
 function dbConnect()
 {
-    $dbh = new PDO('pgsql:user=db-man dbname=testdb');
+    // TODO: Read this information from external file. Placed in special directory?
+    $dbh = new PDO('pgsql:user=db-man-public password=thisisaHorseBatteryStaple dbname=cmerc-db');
 	if (!$dbh)
 	{
 		die( "{'error':'Database unreachable'}" );

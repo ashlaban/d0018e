@@ -3,6 +3,9 @@
 -- --- DB-USERS --- --
 -- ---------------- --
 
+DROP USER "db-man-public";
+DROP USER "db-man-private";
+
 CREATE USER "db-man-public"  WITH PASSWORD 'thisisaHorseBatteryStaple';
 CREATE USER "db-man-private" WITH PASSWORD 'anotherHorseBatteryStaple';
 GRANT CONNECT ON DATABASE "cmerc-db" TO "db-man-public";
@@ -38,7 +41,7 @@ CREATE TABLE usercomments(
 );
 
 ALTER TABLE userdata     OWNER TO "db-man-public";
-ALTER TABLE userpassword OWNER TO "db-man-private";
+ALTER TABLE userpassword OWNER TO "db-man-public";
 ALTER TABLE usercomments OWNER TO "db-man-public";
 
 -- --- PROJECTS --- --
@@ -46,7 +49,7 @@ ALTER TABLE usercomments OWNER TO "db-man-public";
 
 CREATE TABLE projectdata(
 	projectid           bigserial                PRIMARY KEY,
-	createddate         timestamp with time zone NOT NULL,
+	createddate         timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
 	owner               varchar(255)             REFERENCES userdata(username),
 	projectname         varchar(255)             NOT NULL,
 	description         varchar(1024)            NOT NULL,
