@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"c",
+				"cmerc-db"
+			],
+			[
 				"h",
 				"href"
 			],
@@ -510,10 +514,6 @@
 			[
 				"local",
 				"localResource"
-			],
-			[
-				"Loc",
-				"LocalResource"
 			]
 		]
 	},
@@ -523,24 +523,73 @@
 			"file": "/usr/local/www/lighttpd.conf",
 			"settings":
 			{
-				"buffer_size": 1027,
+				"buffer_size": 1141,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "# SQL Statements for generating the Code Mercenary database\n\n### --- Users --- ###\nCREATE TABLE userdata(\n\n)\n\nCREATE TABLE userpassword(\n\n)\n\nCREATE TABLE usercomments(\n\n)\n\n### --- Projects --- ###\nCREATE TABLE projectdata(\n\n)\n\nCREATE TABLE usertasks(\n\n)\n\nCREATE TABLE usercomments(\n\n)",
+			"file": "db-init.sql",
 			"settings":
 			{
-				"buffer_size": 284,
+				"buffer_size": 2581,
 				"line_ending": "Unix",
 				"name": "# SQL Statements for generating the Code Mercenary"
+			}
+		},
+		{
+			"file": "db-init.sh",
+			"settings":
+			{
+				"buffer_size": 288,
+				"line_ending": "Unix",
+				"name": "### --- SHELL --- ###"
 			}
 		},
 		{
 			"file": "index.php",
 			"settings":
 			{
-				"buffer_size": 2550,
+				"buffer_size": 2578,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "text",
+			"settings":
+			{
+				"buffer_size": 1343,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "html/header.html",
+			"settings":
+			{
+				"buffer_size": 5695,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "db.php",
+			"settings":
+			{
+				"buffer_size": 1839,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "html/project-view.html",
+			"settings":
+			{
+				"buffer_size": 2242,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "html/project-details.html",
+			"settings":
+			{
+				"buffer_size": 4936,
 				"line_ending": "Unix"
 			}
 		}
@@ -605,6 +654,7 @@
 	},
 	"file_history":
 	[
+		"/usr/local/www/serv-man",
 		"/usr/local/www/d0018e/header.php",
 		"/usr/local/www/d0018e/api/get-project-comments.php",
 		"/usr/local/www/d0018e/api/get-user-comments.php",
@@ -731,8 +781,7 @@
 		"/Users/ashlaban/Dropbox/Jobb/SOA/coap/Test/src/org/cf/test/Test.java",
 		"/Users/ashlaban/Dropbox/Jobb/SOA/coap/Californium/cf-helloworld-server/pom.xml",
 		"/Users/ashlaban/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/Users/ashlaban/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
-		"/Users/ashlaban/Dropbox/Jobb/SOA/contiki/aesop/dhnode/outlet_coap.c"
+		"/Users/ashlaban/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings"
 	],
 	"find":
 	{
@@ -756,6 +805,11 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"---",
+			"PRIVILEGES",
+			"###",
+			"##",
+			"user",
 			"...",
 			"commentee",
 			":commentee",
@@ -878,12 +932,7 @@
 			"er-coap-engine",
 			"coap_get_header_uri_host",
 			"define uip_ip6addr",
-			"uip_ip6addr",
-			"uip_ipv6addr",
-			"get_post_variable",
-			"define PROCESS",
-			"obs",
-			"\";obs\""
+			"uip_ip6addr"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -906,6 +955,7 @@
 	"groups":
 	[
 		{
+			"selected": 8,
 			"sheets":
 			[
 				{
@@ -913,15 +963,15 @@
 					"file": "/usr/local/www/lighttpd.conf",
 					"settings":
 					{
-						"buffer_size": 1027,
+						"buffer_size": 1141,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								518,
-								518
+								156,
+								121
 							]
 						],
 						"settings":
@@ -937,23 +987,52 @@
 				},
 				{
 					"buffer": 1,
+					"file": "db-init.sql",
 					"settings":
 					{
-						"buffer_size": 284,
+						"buffer_size": 2581,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								282,
-								282
+								1534,
+								1534
 							]
 						],
 						"settings":
 						{
 							"auto_name": "# SQL Statements for generating the Code Mercenary",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/SQL/SQL.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 484.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "db-init.sh",
+					"settings":
+					{
+						"buffer_size": 288,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								227,
+								227
+							]
+						],
+						"settings":
+						{
+							"auto_name": "### --- SHELL --- ###",
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -962,24 +1041,161 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "index.php",
 					"settings":
 					{
-						"buffer_size": 2550,
+						"buffer_size": 2578,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								2257,
+								2257
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 922.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "text",
+					"settings":
+					{
+						"buffer_size": 1343,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								390,
+								390
+							]
+						],
+						"settings":
+						{
+							"spell_check": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "html/header.html",
+					"settings":
+					{
+						"buffer_size": 5695,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5115,
+								5115
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2292.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "db.php",
+					"settings":
+					{
+						"buffer_size": 1839,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								113,
+								113
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "html/project-view.html",
+					"settings":
+					{
+						"buffer_size": 2242,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1831,
+								1831
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 436.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "html/project-details.html",
+					"settings":
+					{
+						"buffer_size": 4936,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								816,
+								816
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,

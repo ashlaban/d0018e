@@ -1,0 +1,83 @@
+<html>
+<head>
+
+	<!-- Database tests -->
+	<!-- Testing basic database input output using the api. -->
+	<script type="text/javascript" src="../js/jquery-2.0.3.js"   ></script>
+</head>
+<body>
+
+<script>
+
+function test( testName, url, data, callback )
+{
+	$('body').append('Testing ' + testName + '...  ');
+	
+	$.ajax( url, { data: data, success: callback, type: 'POST', async: false} );
+	$('body').append('<br>');
+}
+
+/* ========================================================================= */
+/* === ADD USER ============================================================ */
+/* ========================================================================= */
+
+function addUserCallback( data )
+{
+	var json = JSON.parse( data );
+
+	if ( json.status === 'success' ) { $('body').append('OK');   }
+	else if ( json.error === 'username already exists' ) { $('body').append('DB NOT EMPTY'); }
+	else                             { $('body').append('FAIL'); }
+}
+
+msg = { username: 'testName', password: 'testing', isProvider: 'true', isDeveloper: 'true' };
+test( 'add-user', '/api/add-user', msg, addUserCallback );
+
+/* ========================================================================= */
+/* === GET USER ============================================================ */
+/* ========================================================================= */
+
+
+function getUserCallback( data )
+{
+	if ( data === "" )
+	{ 
+		$('body').append('FAIL');
+		return;
+	}
+
+	var json = JSON.parse( data );
+
+	if ( json[0].username === 'testName' ) { $('body').append('OK');   }
+	else                                   { $('body').append('FAIL'); console.log( data ); }
+}
+
+// Success
+msg = { username: 'testName' };
+test( 'get-user by name', '/api/get-user', msg, getUserCallback );
+
+msg = { userid: 0 };
+test( 'get-user by id', '/api/get-user', msg, getUserCallback );
+
+// document.write('Testing get-user');
+// $.ajax( '/get-user' )
+
+/* ========================================================================= */
+/* === ADD PROJECT ========================================================= */
+/* ========================================================================= */
+
+// /* Project tests */
+// $.ajax( '/add-project' )
+// $.ajax( '/add-project' )
+// $.ajax( '/get-project' )
+
+// /* Comments tests */
+// $.ajax( '/add-user-comment' )
+// $.ajax( '/add-project-comment' )
+// $.ajax( '/get-user-comments' )
+// $.ajax( '/get-project-comments' )
+
+</script>
+
+</body>
+</html>
