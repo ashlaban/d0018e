@@ -25,14 +25,30 @@
 
 		<div class="col-md-6">
 			
-			<h4>Tasks</h4>
-			
-			<!-- ko foreach: tasks -->
-			<div class="panel panel-default">
-				<div class="panel-heading">Task Name <!-- Additional buttons, markers? --></div>
-				<div class="panel-body">Description - Hidden first?</div>
+			<div id="task-title-wrapper">
+				<h4 id="task-title" >Tasks</h4>
+				<button id="add-task-button" data-toggle="modal" data-target="#add-task-modal">Add Task (Only for owners)</button>
 			</div>
-			<!-- /ko -->
+
+			<div class="panel-group" id="accordion">
+				<!-- ko foreach: tasks -->
+  				<div class="panel panel-default">
+	    			<div class="panel-heading">
+	      				<h4 class="panel-title">
+	        				<a data-toggle="collapse" data-parent="#accordion" data-bind="text: taskname, attr: { href: indexurl }">Task Name</a>
+	      				</h4>
+	      				<span class="label label-success" data-bind="text: status">status</span>
+	    			</div>
+	    			<div class="panel-collapse collapse" data-bind="attr: { id: index }" >
+      					<div class="panel-body" data-bind="text: description">Body</div>
+      					<div class="panel-footer">
+      						<button>Pick up</button>
+      						<button class="loadChildrenButton">View children</button>
+      					</div>
+    				</div>
+  				</div>
+  				<!-- /ko -->
+			</div>
 		</div>
 
 	</div>
@@ -58,6 +74,53 @@
 
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="add-task-modal" tabindex="-1" role="dialog" aria-labelledby="add-task-modal-label" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="add-task-modal-label">Add task</h4>
+			</div>
+			<div class="modal-body">
+				
+				<p>
+					Enter details about a subtask for this project. Mark any direct dependencies in the list below. (Only one parent task.)
+				</p>
+				
+				<form role="form">
+						<div class="form-group">
+							<label for="sign-up-username-label">Task Name</label>
+							<input type="text" class="form-control" id="add-task-name" placeholder="Enter task name">
+						</div>
+						<div class="form-group">
+							<label for="sign-up-password-label">Description</label>
+							<input type="text" class="form-control" id="add-task-desc" placeholder="Enter description">
+						</div>
+						
+						<div class="form-group">
+							<label for="sign-up-parent-label">Select parent (can be none)</label>
+							<!-- ko foreach: tasks -->
+							<div class="checkbox">
+								<label class="add-task-parent">
+									<input type="checkbox">
+									<p data-bind="text: taskname"></p>
+								</label>
+								<button>View children</button>
+							</div>
+							<!-- /ko -->
+						</div>
+					</form>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" onclick="submitTask()">Add Task</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script>
 
 /*** GLOBAL VARIABLES ***/
@@ -80,6 +143,9 @@ function ProjectDetailsModel()
 	self.tasks      = ko.observableArray();
 	self.comments   = ko.observableArray();
 
+	// Task browse memory
+	self.parenttaskid = [];
+
 	self.addToArray = function( jsonObject, type )
 	{
 		for (var iItem = 0; iItem < jsonObject.length; iItem++)
@@ -91,6 +157,10 @@ function ProjectDetailsModel()
 	self.addTask = function( jsonObject )
 	{
 		// TODO: Validation
+
+		jsonObject.index    =  "task-" + jsonObject.localtaskid;
+		jsonObject.indexurl = "#task-" + jsonObject.localtaskid;
+
 		self.tasks.push( jsonObject );
 	}
 	
@@ -111,8 +181,20 @@ function ProjectDetailsModel()
 		self.owner(       jsonObject[0].owner         );
 		self.createddate( jsonObject[0].createddate   );
 		self.description( jsonObject[0].description   );
-		self.rating(      jsonObject[0].projectrating );
-		console.log(self.projectname());
+		
+		// Parsing the project rating
+		var ratingSum = jsonObject[0].projectrating;
+		var ratingNum = jsonObject[0].nratings;
+		if (ratingNum == 0)
+		{
+			self.rating( 0 );
+		}
+		else
+		{
+			self.rating( ratingSum / ratingNum );
+		}
+
+		// Update gui
 		renderStars();
 	}
 
@@ -120,24 +202,60 @@ function ProjectDetailsModel()
 	{
 		if (data === "") { return; }
 		var jsonObject = $.parseJSON( data );
-		projectDetailsModel.addToArray( jsonObject, "tasks" );
+		self.addToArray( jsonObject, "tasks" );
+		$(".loadChildrenButton").click( self.loadChildren );
 	}
 
 	self.handleProjectsComments = function( data )
 	{
 		if (data === "") { return; }
 		var jsonObject = $.parseJSON( data );
-		projectDetailsModel.addToArray( jsonObject, "comments" );
+		self.addToArray( jsonObject, "comments" );
+	}
+
+	self.loadChildren = function( ev )
+	{
+		var index = $(this).parent().parent().parent().index();
+		var task = self.tasks()[index];
+		var taskid = task.taskid;
+		self.parenttaskid.push( taskid );
+
+		while( self.tasks().length > 0 ) self.tasks.pop();
+
+		$.post( "/api/get-project-tasks", { projectid: projectid, parenttaskid: taskid }, self.handleProjectsTasks);
 	}
 }
 
 // End Knockout
 
+// Ratings
+/* Perform a ratig when the stars are clicked
+ */
+function rate( ev )
+{
+	// Figure out where the user clicked
+	var div = $(".stars");
+    var x =  ev.pageX - div.offset().left;
+
+    // 16 is width of starts image.
+    var rating = Math.round(x / 16);
+    console.log( rating );
+
+    // Construct message
+	msg = { projectid: projectid, rating: rating };
+
+	var callback = function(data)
+	{
+		console.log(data);
+		window.location.reload();
+	}
+
+	$.post( "/api/rate", msg, callback );
+}
+
 // Comment actions
 function submitComment()
 {
-	console.log("test");
-
 	var comment   = $('#add-comment-area')[0].value;
 	var username  = sessionStorage.username;
 
@@ -154,15 +272,50 @@ function submitComment()
 }
 // End Comment actions
 
+function submitTask()
+{
+	var taskname     = $("#add-task-name").val();
+	var description  = $("#add-task-desc").val();
+	var parenttaskid = null;
+
+	// Find parent if any (Grab first checkbox marked...)
+	var potentialParents = $(".add-task-parent");
+	for (var i = 0; i < potentialParents.length; i++)
+	{
+		if ( potentialParents[i].children[0].checked == true )
+		{
+			parenttaskid = projectDetailsModel.tasks[i].taskid;
+			break;
+		}
+	};
+
+	// Construct message
+	var message = {projectid: projectid, taskname: taskname, description: description};
+	if ( parenttaskid !== null ) { message.parenttaskid = parenttaskid; }
+
+	var callback = function(data)
+	{
+		console.log(data);
+		window.location.reload();
+	}
+
+	// Send message to API
+	console.log( "Adding Task:" + JSON.stringify(message) );
+	$.post( "/api/add-project-task", message, callback ) 
+}
+
 // Set up knockout and fetch data from database
 // var currentProject = JSON.parse( sessionStorage.currentProject );
 console.log("Running modelview")
 var projectDetailsModel = new ProjectDetailsModel()
-ko.applyBindings( projectDetailsModel, $('#project-details')[0] );
+ko.applyBindings( projectDetailsModel );
 
 $.post( "/api/get-project"         , { projectid: projectid }, projectDetailsModel.handleProject          );
 $.post( "/api/get-project-tasks"   , { projectid: projectid }, projectDetailsModel.handleProjectsTasks    );
 $.post( "/api/get-project-comments", { projectid: projectid }, projectDetailsModel.handleProjectsComments );
+
+// Setting event listeners
+$(".stars").click( rate );
 
 // Privileges for logged in users
 // Note that a vaild token is required to post to api so it is ok to disable stuff in browser

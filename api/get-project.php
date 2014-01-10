@@ -9,7 +9,8 @@ function getRecentProjects( $nProjects )
 						owner,
 						description,
 						to_char(createddate, 'DD Mon, YYYY') AS createddate,
-						projectrating
+						projectrating,
+						nratings
 				FROM projectdata
 			ORDER BY projectid DESC
 			   LIMIT :nProjects";
@@ -29,7 +30,8 @@ function getProjectById( $projectid )
 						owner,
 						description,
 						to_char(createddate, \'DD Mon, YYYY\') AS createddate,
-						projectrating
+						projectrating,
+						nratings
 				FROM projectdata
 			   WHERE projectid = :projectid;';
 

@@ -1,0 +1,62 @@
+<html>
+<head>
+
+	<!-- Database fill -->
+	<!-- Filling the database with test input using the api. -->
+	<script type="text/javascript" src="../js/jquery-2.0.3.js"   ></script>
+</head>
+<body>
+
+<script>
+
+function fill( name, url, data, callback )
+{
+	$('body').append( 'Creating ' + name );
+	
+	$.ajax( url, { data: data, success: callback, type: 'POST', async: false} );
+	$('body').append( '<br>' );
+	$('body').append( 'Response: ' );
+}
+
+function callback( data ) { $('body').append( data ); $('body').append( '<br>' ); }
+
+// Users
+
+msg = { username: 'ashlaban', password: 'segert1', isProvider: 'true', isDeveloper: 'true' };
+fill( 'User: ashlaban', '/api/add-user', msg, callback );
+
+msg = { username: 'facehugger', password: 'segert1', isProvider: 'true', isDeveloper: 'true' };
+fill( 'User: facehugger', '/api/add-user', msg, callback );
+
+// Projects
+
+msg = { projectname: 'Padding Project', owner: 'ashlaban', description: 'Only filler. Do not mind me. There is nothing to see here. Hop along..!' };
+fill( 'Project: Padding0', '/api/add-project', msg, callback );
+
+msg = { projectname: 'Project Prime', owner: 'ashlaban', description: 'A first investigation into the marvelous world of prime numbers. And I need your help. Come join!' };
+fill( 'Project: Prime', '/api/add-project', msg, callback );
+
+msg = { projectname: 'Resistor recogniser', owner: 'facehugger', description: 'I was thinking that making a small app for the iPhone that can recognize resistor color values would be awesome..!', extendedDescription: 'It will work like this. I am fully capable of devloping an iPhone application and I need your help to get to grips with image recognition with the iPhone camera.' };
+fill( 'Project: Resistor', '/api/add-project', msg, callback );
+
+msg = { projectname: 'Padding Project', owner: 'ashlaban', description: 'Only filler. Do not mind me. There is nothing to see here. Hop along..!' };
+fill( 'Project: Padding1', '/api/add-project', msg, callback );
+
+// User Comments
+msg = { commenter: 'facehugger', commentee: 'ashlaban', comment: 'Hey there man. How are you doing? Come check out my new cool project!' };
+fill( 'Comment: User facehugger', '/api/add-user-comment', msg, callback );
+
+msg = { commenter: 'ashlaban', commentee: 'facehugger', comment: 'Yeah, I saw! Sounds awesome :) Will let you know if I find anyone interested..!' };
+fill( 'Comment: User ashlaban', '/api/add-user-comment', msg, callback );
+
+// Project Comments
+msg = { username: 'facehugger', projectid: 1, comment: 'First post you know! ;) Good luck!'};
+fill( 'Comment: Project Prime', '/api/add-project-comment', msg, callback );
+
+msg = { username: 'ashlaban', projectid: 1, comment: 'Thanks! And you too.'};
+fill( 'Comment: Project Prime', '/api/add-project-comment', msg, callback );
+
+</script>
+
+</body>
+</html>

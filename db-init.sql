@@ -14,7 +14,8 @@ GRANT CONNECT ON DATABASE "cmerc-db" TO "db-man-private";
 -- --- TYPES --- --
 -- ------------- --
 
-CREATE TYPE task_status AS ENUM ('available','started','done');
+CREATE TYPE task_status        AS ENUM ('available','started','done');
+CREATE TYPE project_dev_status AS ENUM ('interested', 'accepted');
 
 -- --- USERS --- --
 -- ------------- --
@@ -35,8 +36,8 @@ CREATE TABLE userpassword(
 
 CREATE TABLE usercomments(
 	commentid bigserial    PRIMARY KEY,
-	commentee varchar(255) REFERENCES userdata(username),
-	commenter varchar(255) REFERENCES userdata(username),
+	commentee varchar(255) NOT NULL REFERENCES userdata(username),
+	commenter varchar(255) NOT NULL REFERENCES userdata(username),
 	comment   text         NOT NULL
 );
 
@@ -50,7 +51,7 @@ ALTER TABLE usercomments OWNER TO "db-man-public";
 CREATE TABLE projectdata(
 	projectid           bigserial                PRIMARY KEY,
 	createddate         timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
-	owner               varchar(255)             REFERENCES userdata(username),
+	owner               varchar(255)             NOT NULL REFERENCES userdata(username),
 	projectname         varchar(255)             NOT NULL,
 	description         varchar(1024)            NOT NULL,
 	extendeddescription text                     ,
@@ -59,22 +60,31 @@ CREATE TABLE projectdata(
 );
 
 CREATE TABLE projecttasks(
-	taskid      bigserial    PRIMARY KEY,
-	projectid   bigint       REFERENCES projectdata(projectid),
-	localtaskid int          NOT NULL,
-	taskname    varchar(255) NOT NULL,
-	description text         NOT NULL,
-	status      task_status  NOT NULL,
+	taskid       bigserial    PRIMARY KEY,
+	projectid    bigint       NOT NULL REFERENCES projectdata(projectid),
+	parenttaskid bigint       REFERENCES projecttasks(taskid),
+	localtaskid  int          NOT NULL,
+	taskname     varchar(255) NOT NULL,
+	description  text         NOT NULL,
+	status       task_status  DEFAULT 'available',
 	UNIQUE( projectid, localtaskid )
 );
 
 CREATE TABLE projectcomments(
 	commentid bigserial    PRIMARY KEY,
-	projectid bigint       REFERENCES projectdata(projectid),
-	username  varchar(255) REFERENCES userdata(username),
+	projectid bigint       NOT NULL REFERENCES projectdata(projectid),
+	username  varchar(255) NOT NULL REFERENCES userdata(username),
 	comment   text         NOT NULL
 );
 
-ALTER TABLE projectdata     OWNER TO "db-man-public";
-ALTER TABLE projecttasks    OWNER TO "db-man-public";
-ALTER TABLE projectcomments OWNER TO "db-man-public";
+-- CREATE TABLE projectdevelopers(
+-- 	username     varchar(255)       REFERENCES userdata(username),
+-- 	projectid    bigint             REFERENCES projectdata(projectid),
+-- 	status       project_dev_status NOT NULL,
+-- 	PRIMARY KEY ( username, projectid )
+-- );
+
+ALTER TABLE projectdata       OWNER TO "db-man-public";
+ALTER TABLE projecttasks      OWNER TO "db-man-public";
+ALTER TABLE projectcomments   OWNER TO "db-man-public";
+-- ALTER TABLE projectdevelopers OWNER TO "db-man-public";

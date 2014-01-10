@@ -2,28 +2,82 @@
 
 require_once '../db.php';
 
-function getProjectTasks( $projectid )
+function getRootTasks( $projectid )
 {
-	$query = 'SELECT 	localTaskId,
-					 	taskName,
+	$query = 'SELECT 	taskid,
+						localtaskid,
+					 	taskname,
 					 	description,
 					 	status
-				FROM projectTasks
-			   WHERE projectid = :projectid
+				FROM projecttasks
+			   WHERE projectid    = :projectid
+			     AND parenttaskid IS NULL
 			;';
 
 	$dbh = dbConnect();
 	$stmt = $dbh->prepare($query);
 	$stmt->bindParam( ':projectid', $projectid );
+	
 	$stmt->execute();
+	if( $stmt->errorCode() === '00000' )
+	{
+		echo sql2json($stmt);	
+	}
+	else
+	{
+		$json = array(  'status' => 'failure',
+						'error'  => 'Operation not executed.' );
+		echo json_encode( $json );
+	}
 
-	return sql2json($stmt);
+}
+
+function getSubtaskToTask( $projectid, $parenttaskid )
+{
+	$query = 'SELECT 	taskid,
+						localtaskid,
+					 	taskname,
+					 	description,
+					 	status
+				FROM projecttasks
+			   WHERE projectid    = :projectid
+			     AND parenttaskid = :parenttaskid
+			;';
+
+	$dbh = dbConnect();
+	$stmt = $dbh->prepare($query);
+	$stmt->bindParam( ':projectid'   , $projectid );
+	$stmt->bindParam( ':parenttaskid', $parenttaskid );
+
+	$stmt->execute();
+	if( $stmt->errorCode() === '00000' )
+	{
+		echo sql2json($stmt);	
+	}
+	else
+	{
+		$json = array(  'status' => 'failure',
+						'error'  => 'Operation not executed.' );
+		echo json_encode( $json );
+	}
 }
 
 // Actual handler
 
-if ( !isset($_POST['projectid']) ) { die('{"error":"projectid not set"}'); }
+if ( !isset($_POST['projectid']) )
+{
+	die('{"error":"projectid not set"}');
+}
 
-$projectid = $_POST['projectid'];
+if ( !isset($_POST['parenttaskid']) )
+{
+	$projectid = $_POST['projectid'];
+	getRootTasks( $projectid );
 
-echo getProjectTasks( $projectid );
+}
+else
+{
+	$projectid    = $_POST['projectid'];
+	$parenttaskid = $_POST['parenttaskid'];
+	getSubtaskToTask( $projectid, $parenttaskid );
+}

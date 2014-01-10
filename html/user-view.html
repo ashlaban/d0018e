@@ -40,6 +40,9 @@
 </div>
 
 <script>
+// Global variable
+
+var username = "<?php echo $_GET['username']?>";
 
 // Knockout - databindings for updating user panels
 function ProjectViewModel()
@@ -66,11 +69,27 @@ function ProjectViewModel()
 		self.comments.push( jsonObject );
 	}
 
+	/* Receive a user from database and parse data.
+	 * 	Userrating is stored as rating sum and number of ratings. Special care
+	 * must be taken to avoid division by zero.
+	 */
 	self.handleGetUser = function( data )
 	{
 		var jsonObject = $.parseJSON( data );
-		self.username( jsonObject[0].username   );
-		self.rating(   jsonObject[0].userrating );
+
+		var username = jsonObject[0].username;
+		var ratingSum = jsonObject[0].userrating;
+		var ratingNum = jsonObject[0].nratings;
+
+		self.username( username );
+		if (ratingNum == 0)
+		{
+			self.rating( 0 );
+		}
+		else
+		{
+			self.rating( ratingSum / ratingNum );
+		}
 		renderStars();
 	}
 
@@ -86,6 +105,31 @@ var userViewModel = new ProjectViewModel()
 ko.applyBindings( userViewModel, $('#knockout-users')[0] );
 
 // End Knockout
+
+// Ratings
+/* Perform a ratig when the stars are clicked
+ */
+function rate( ev )
+{
+	// Figure out where the user clicked
+	var div = $(".stars");
+    var x =  ev.pageX - div.offset().left;
+
+    // 16 is width of starts image.
+    var rating = Math.round(x / 16);
+    console.log( rating );
+
+    // Construct message
+	msg = { username: username, rating: rating };
+
+	var callback = function(data)
+	{
+		console.log(data);
+		window.location.reload();
+	}
+
+	$.post( "/api/rate", msg, callback );
+}
 
 // Comment actions
 function submitComment()
@@ -107,9 +151,12 @@ function submitComment()
 }
 // End Comment actions
 
-var username = "<?php echo $_GET['username']?>";
+// Loading data
 $.post( "/api/get-user"         , { username: username }, userViewModel.handleGetUser );
 $.post( "/api/get-user-comments", { commentee: username }, userViewModel.handleUserComments );
+
+// Setting event listeners
+$(".stars").click( rate );
 
 // Privileges for logged in users
 // Note that a vaild token is required to post to api so it is ok to disable stuff in browser

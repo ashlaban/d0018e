@@ -48,11 +48,11 @@ function addProject( $owner, $projectname, $description, $extendedDescription )
 	exit;
 }
 
-if ( !isset($_POST["username"   ]) ) { die("{'error': 'username missing'}"   ); }
+if ( !isset($_POST["owner"      ]) ) { die("{'error': 'owner missing'}"   ); }
 if ( !isset($_POST["projectname"]) ) { die("{'error': 'projectname missing'}"); }
 if ( !isset($_POST["description"]) ) { die("{'error': 'description missing'}"); }
 
-$owner = $_POST["username"];
+$owner         = $_POST["owner"];
 $projectname   = $_POST["projectname"];
 $description   = $_POST["description"];
 

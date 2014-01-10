@@ -132,11 +132,11 @@ function logout()
 
 function signup()
 {
-	username   = $("#signup-username"  ).val();
-	password   = $("#signup-password"  ).val();
-	password2  = $("#signup-password2" ).val();
-	developer  = $("#signup-developer" ).is(":checked");
-	provider   = $("#signup-provider"  ).is(":checked");
+	var username   = $("#signup-username"  ).val();
+	var password   = $("#signup-password"  ).val();
+	var password2  = $("#signup-password2" ).val();
+	var developer  = $("#signup-developer" ).is(":checked");
+	var provider   = $("#signup-provider"  ).is(":checked");
 
 	// Error checking
 	error = false;
